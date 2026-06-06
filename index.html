@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#F4EFE5" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#1A1714" media="(prefers-color-scheme: dark)" />
+<title>เรียน · 泰语单词</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,600&family=Outfit:wght@300;400;500;600&family=Bai+Jamjuree:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<style>
+  :root {
+    --bg: #F4EFE5;
+    --bg-card: #FFFFFF;
+    --bg-soft: #EBE3D1;
+    --bg-softer: #F9F4E8;
+    --text: #1B1612;
+    --text-muted: #6B5F4F;
+    --text-faint: #A89A82;
+    --accent: #1B8770;
+    --accent-hover: #146A57;
+    --accent-soft: #DEEDE7;
+    --accent-text: #0E4F40;
+    --danger: #C84B3A;
+    --danger-soft: #F5E0DC;
+    --danger-text: #7A2517;
+    --border: rgba(27, 22, 18, 0.10);
+    --border-strong: rgba(27, 22, 18, 0.18);
+    --radius: 10px;
+    --radius-lg: 16px;
+    --shadow: 0 1px 2px rgba(27,22,18,0.04), 0 12px 36px -12px rgba(27,22,18,0.10);
+    --font-display: 'Fraunces', 'Songti SC', 'STSong', 'Source Han Serif SC', serif;
+    --font-body: 'Outfit', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+    --font-thai: 'Bai Jamjuree', 'Sarabun', 'Noto Sans Thai', system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1714;
+      --bg-card: #221E1A;
+      --bg-soft: #2D2823;
+      --bg-softer: #1F1B17;
+      --text: #F4EFE5;
+      --text-muted: #B8A993;
+      --text-faint: #7F7363;
+      --accent: #4FB39A;
+      --accent-hover: #6BC6AE;
+      --accent-soft: #1F3A33;
+      --accent-text: #8FD4BD;
+      --danger: #E07566;
+      --danger-soft: #3D1F1A;
+      --danger-text: #F0A89E;
+      --border: rgba(244, 239, 229, 0.10);
+      --border-strong: rgba(244, 239, 229, 0.18);
+      --shadow: 0 1px 2px rgba(0,0,0,0.20), 0 12px 36px -12px rgba(0,0,0,0.40);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.5;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+  button { font-family: inherit; }
+
+  .page {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 36px 20px 56px;
+  }
+
+  /* hero */
+  .hero { text-align: center; margin-bottom: 32px; }
+  .hero-mark {
+    font-family: var(--font-thai);
+    font-size: 13px;
+    letter-spacing: 0.32em;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 44px;
+    line-height: 1.05;
+    margin: 0;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .hero-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin: 12px 0 0;
+    font-weight: 400;
+  }
+  .hero-divider {
+    width: 28px;
+    height: 1.5px;
+    background: var(--accent);
+    margin: 18px auto 0;
+    border-radius: 2px;
+  }
+
+  /* app card */
+  .app {
+    background: var(--bg-card);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 22px;
+    box-shadow: var(--shadow);
+  }
+
+  /* footer */
+  .foot {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 12px;
+    color: var(--text-faint);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .foot .dot { opacity: 0.5; }
+
+  /* top status bar */
+  .va-top { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+  .va-bar { flex: 1; height: 6px; background: var(--bg-soft); border-radius: 3px; overflow: hidden; }
+  .va-bar-fill { height: 100%; background: var(--accent); transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); width: 0%; border-radius: 3px; }
+  .va-stat { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 500; color: var(--text-muted); }
+  .va-stat i { font-size: 15px; }
+  .va-vocab-btn { display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px; background: var(--bg-soft); border: none; border-radius: 999px; font-size: 13px; font-weight: 500; cursor: pointer; color: var(--text); transition: background 0.15s, color 0.15s; }
+  .va-vocab-btn:hover { background: var(--bg-softer); }
+  .va-vocab-btn.active { background: var(--accent-soft); color: var(--accent-text); }
+  .va-vocab-btn i { font-size: 14px; }
+
+  /* card content */
+  .va-card { padding: 20px 8px 8px; margin-bottom: 4px; text-align: center; }
+  .va-thai-row { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 4px; }
+  .va-thai-big {
+    font-family: var(--font-thai);
+    font-size: 54px;
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--text);
+  }
+  .va-zh-big {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 42px;
+    font-weight: 500;
+    margin: 0 0 4px;
+    color: var(--text);
+    line-height: 1.1;
+  }
+  .va-roman {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--text-muted);
+    margin: 6px 0 24px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+  .va-prompt {
+    font-size: 11px;
+    color: var(--text-faint);
+    margin: 0;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* speaker */
+  .va-speak {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-text);
+    transition: transform 0.15s, background 0.15s, color 0.15s;
+    flex-shrink: 0;
+  }
+  .va-speak:hover { background: var(--accent); color: #fff; }
+  .va-speak:active { transform: scale(0.92); }
+  .va-speak i { font-size: 19px; }
+  @media (prefers-color-scheme: dark) {
+    .va-speak:hover { color: var(--bg); }
+  }
+
+  /* options */
+  .va-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+  .va-opt {
+    padding: 16px 14px;
+    background: var(--bg-card);
+    border: 0.5px solid var(--border-strong);
+    border-radius: var(--radius);
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, transform 0.1s;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .va-opt:hover:not(:disabled) { background: var(--bg-softer); border-color: var(--text-faint); }
+  .va-opt:active:not(:disabled) { transform: scale(0.98); }
+  .va-opt:disabled { cursor: default; }
+  .va-opt.correct { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-text); }
+  .va-opt.wrong { background: var(--danger-soft); border-color: var(--danger); color: var(--danger-text); }
+
+  /* spelling tiles */
+  .va-slots {
+    display: flex; gap: 6px; justify-content: center;
+    min-height: 60px; margin: 4px 0 20px;
+    padding: 8px 0;
+    border-bottom: 1.5px dashed var(--border-strong);
+    flex-wrap: wrap;
+  }
+  .va-bank { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+  .va-tile {
+    min-width: 46px; height: 52px;
+    padding: 0 10px;
+    background: var(--bg-card);
+    border: 0.5px solid var(--border-strong);
+    border-radius: var(--radius);
+    font-size: 26px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, opacity 0.15s, transform 0.1s;
+    font-family: var(--font-thai);
+    color: var(--text);
+    font-weight: 500;
+  }
+  .va-tile:hover:not(.used) { background: var(--bg-softer); }
+  .va-tile:active:not(.used) { transform: scale(0.95); }
+  .va-tile.used { opacity: 0.22; pointer-events: none; }
+  .va-tile.slot { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-text); }
+
+  /* feedback */
+  .va-fb { text-align: center; min-height: 22px; margin: 8px 0 16px; font-size: 14px; font-weight: 500; }
+  .va-fb.ok { color: var(--accent); }
+  .va-fb.no { color: var(--danger); }
+
+  /* primary action */
+  .va-btn-action {
+    padding: 12px 28px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    letter-spacing: 0.04em;
+  }
+  .va-btn-action:hover { background: var(--accent-hover); }
+  .va-btn-action:active { transform: scale(0.97); }
+  @media (prefers-color-scheme: dark) {
+    .va-btn-action { color: var(--bg); }
+  }
+
+  /* controls */
+  .va-controls { display: flex; align-items: center; gap: 8px; justify-content: space-between; margin-top: 22px; padding-top: 14px; border-top: 0.5px solid var(--border); }
+  .va-modes { display: inline-flex; gap: 3px; background: var(--bg-soft); padding: 3px; border-radius: var(--radius); }
+  .va-mode { padding: 7px 14px; background: transparent; border: none; border-radius: 7px; font-size: 13px; cursor: pointer; color: var(--text-muted); font-weight: 500; transition: background 0.15s, color 0.15s; }
+  .va-mode.active { background: var(--bg-card); color: var(--text); box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+  .va-restart { font-size: 13px; padding: 7px 13px; background: transparent; border: 0.5px solid var(--border-strong); border-radius: var(--radius); cursor: pointer; color: var(--text-muted); transition: color 0.15s, background 0.15s, border-color 0.15s; display: inline-flex; align-items: center; gap: 4px; }
+  .va-restart:hover { background: var(--bg-soft); color: var(--text); border-color: var(--text-faint); }
+  .va-restart i { font-size: 14px; }
+
+  /* result */
+  .va-result { text-align: center; padding: 32px 16px; }
+  .va-result-icon { font-size: 56px; color: var(--accent); margin-bottom: 14px; line-height: 1; }
+  .va-result-title { font-family: var(--font-display); font-style: italic; font-size: 30px; font-weight: 500; margin: 0 0 6px; color: var(--text); }
+  .va-result-sub { font-size: 14px; color: var(--text-muted); margin: 0 0 24px; }
+
+  /* wordbook */
+  .va-vocab-empty { text-align: center; padding: 48px 24px; }
+  .va-vocab-empty .ti { font-size: 44px; color: var(--text-faint); }
+  .va-vocab-empty-title { font-family: var(--font-display); font-style: italic; font-size: 22px; margin: 14px 0 4px; color: var(--text); }
+  .va-vocab-empty-sub { font-size: 13px; color: var(--text-muted); }
+  .va-vocab-list { display: flex; flex-direction: column; gap: 8px; }
+  .va-vocab-item { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: var(--bg-softer); border: 0.5px solid var(--border); border-radius: var(--radius); transition: background 0.15s; }
+  .va-vocab-item:hover { background: var(--bg-soft); }
+  .va-vocab-thai { font-family: var(--font-thai); font-size: 22px; font-weight: 500; color: var(--text); }
+  .va-vocab-meta { font-size: 13px; color: var(--text-muted); margin-top: 2px; font-family: var(--font-display); font-style: italic; }
+  .va-vocab-meta .zh { font-family: var(--font-body); font-style: normal; }
+  .va-icon-btn { width: 34px; height: 34px; border-radius: 50%; background: transparent; border: 0.5px solid var(--border-strong); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; color: var(--text-muted); transition: background 0.15s, color 0.15s, border-color 0.15s; flex-shrink: 0; }
+  .va-icon-btn:hover { background: var(--accent-soft); color: var(--accent-text); border-color: var(--accent); }
+  .va-icon-btn i { font-size: 16px; }
+  .va-back { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; color: var(--text-muted); background: transparent; border: none; cursor: pointer; padding: 0; margin-bottom: 14px; font-weight: 500; }
+  .va-back:hover { color: var(--text); }
+
+  /* animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .anim-in { animation: fadeUp 0.35s ease forwards; }
+
+  /* responsive */
+  @media (max-width: 480px) {
+    .page { padding: 24px 14px 40px; }
+    .hero-title { font-size: 36px; }
+    .va-thai-big { font-size: 44px; }
+    .va-zh-big { font-size: 34px; }
+    .va-tile { min-width: 42px; height: 48px; font-size: 22px; }
+    .va-opt { padding: 14px 12px; font-size: 15px; }
+    .app { padding: 18px; }
+  }
+
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+</style>
+</head>
+<body>
+<main class="page">
+  <header class="hero">
+    <div class="hero-mark">เรียน</div>
+    <h1 class="hero-title">泰语·单词</h1>
+    <p class="hero-sub">慢慢来,一个词一个词地认识泰国</p>
+    <div class="hero-divider" aria-hidden="true"></div>
+  </header>
+
+  <section class="app" aria-label="练习区">
+    <h2 class="sr-only">Thai vocabulary practice app with TTS and persistent wordbook.</h2>
+    <div class="va-top">
+      <div class="va-bar"><div class="va-bar-fill" id="va-fill"></div></div>
+      <div class="va-stat" title="连胜"><i class="ti ti-flame" aria-hidden="true"></i><span id="va-streak">0</span></div>
+      <div class="va-stat" title="得分"><i class="ti ti-star" aria-hidden="true"></i><span id="va-score">0</span></div>
+      <button class="va-vocab-btn" id="va-vocab-btn"><i class="ti ti-notebook" aria-hidden="true"></i>生词本 <span id="va-vocab-n">0</span></button>
+    </div>
+    <div id="va-area"></div>
+    <div class="va-controls" id="va-controls">
+      <div class="va-modes" role="tablist">
+        <button class="va-mode active" id="va-mode-mc" role="tab">选词配对</button>
+        <button class="va-mode" id="va-mode-spell" role="tab">拼写挑战</button>
+      </div>
+      <button class="va-restart" id="va-restart"><i class="ti ti-refresh" aria-hidden="true"></i>新一轮</button>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span><i class="ti ti-device-floppy" style="font-size:13px;vertical-align:-2px;margin-right:3px"></i>本地保存</span>
+    <span class="dot">·</span>
+    <span>共练习 <strong id="foot-sessions" style="color:var(--text-muted);font-weight:500">0</strong> 轮 · 累计 <strong id="foot-score" style="color:var(--text-muted);font-weight:500">0</strong> 分</span>
+  </footer>
+</main>
+
+<script>
+(function(){
+  // ============================================================
+  // 单词库 —— 加词在这里加,格式照抄就行
+  // ============================================================
+  const WORDS = [
+    {thai:'สวัสดี', roman:'sà-wàt-dii', zh:'你好'},
+    {thai:'ขอบคุณ', roman:'khɔ̀ɔp-khun', zh:'谢谢'},
+    {thai:'ลาก่อน', roman:'laa-kɔ̀ɔn', zh:'再见'},
+    {thai:'ขอโทษ', roman:'khɔ̌ɔ-thôot', zh:'对不起'},
+    {thai:'สบายดี', roman:'sà-baai-dii', zh:'我很好'},
+    {thai:'ข้าว', roman:'khâao', zh:'米饭'},
+    {thai:'น้ำ', roman:'náam', zh:'水'},
+    {thai:'อร่อย', roman:'à-rɔ̀ɔy', zh:'好吃'},
+    {thai:'ส้มตำ', roman:'sôm-tam', zh:'青木瓜沙拉'},
+    {thai:'ผัดไทย', roman:'phàt-thai', zh:'泰式炒河粉'},
+    {thai:'ใช่', roman:'châi', zh:'是'},
+    {thai:'ไม่', roman:'mâi', zh:'不'},
+    {thai:'ดี', roman:'dii', zh:'好'},
+    {thai:'รัก', roman:'rák', zh:'爱'},
+    {thai:'ฉัน', roman:'chǎn', zh:'我'},
+    {thai:'คุณ', roman:'khun', zh:'你'},
+    {thai:'หนึ่ง', roman:'nùeng', zh:'一'},
+    {thai:'สอง', roman:'sɔ̌ɔng', zh:'二'},
+    {thai:'สาม', roman:'sǎam', zh:'三'}
+  ];
+  const SESSION = 8;
+  const STORAGE_KEY = 'thai-vocab-app-v1';
+
+  // ============================================================
+  // 状态
+  // ============================================================
+  const state = {
+    mode: 'mc',
+    view: 'practice',
+    idx: 0,
+    score: 0,
+    streak: 0,
+    best: 0,
+    answered: false,
+    queue: [],
+    wrongWords: [],
+    lifetimeScore: 0,
+    sessionsCompleted: 0,
+    thaiVoice: null,
+  };
+
+  // ============================================================
+  // 持久化
+  // ============================================================
+  function loadState(){
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return;
+      const saved = JSON.parse(raw);
+      state.wrongWords = Array.isArray(saved.wrongWords) ? saved.wrongWords : [];
+      state.lifetimeScore = Number(saved.lifetimeScore) || 0;
+      state.sessionsCompleted = Number(saved.sessionsCompleted) || 0;
+    } catch(e){ console.warn('load failed', e); }
+  }
+  function persist(){
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        wrongWords: state.wrongWords,
+        lifetimeScore: state.lifetimeScore,
+        sessionsCompleted: state.sessionsCompleted,
+      }));
+    } catch(e){ console.warn('save failed', e); }
+  }
+  function updateFoot(){
+    document.getElementById('foot-sessions').textContent = state.sessionsCompleted;
+    document.getElementById('foot-score').textContent = state.lifetimeScore;
+    document.getElementById('va-vocab-n').textContent = state.wrongWords.length;
+  }
+
+  // ============================================================
+  // 工具
+  // ============================================================
+  function shuffle(arr){
+    const a = arr.slice();
+    for(let i = a.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  // ============================================================
+  // 语音合成
+  // ============================================================
+  function initTTS(){
+    if(!('speechSynthesis' in window)) return;
+    const pick = () => {
+      const voices = speechSynthesis.getVoices();
+      state.thaiVoice = voices.find(v => v.lang && v.lang.toLowerCase().startsWith('th')) || null;
+    };
+    pick();
+    if(typeof speechSynthesis.onvoiceschanged !== 'undefined'){
+      speechSynthesis.onvoiceschanged = pick;
+    }
+  }
+  function speak(text){
+    if(!('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'th-TH';
+    u.rate = 0.85;
+    if(state.thaiVoice) u.voice = state.thaiVoice;
+    speechSynthesis.speak(u);
+  }
+
+  // ============================================================
+  // 生词本
+  // ============================================================
+  function addWrong(w){
+    if(!state.wrongWords.find(x => x.thai === w.thai)){
+      state.wrongWords.push({thai: w.thai, roman: w.roman, zh: w.zh});
+      persist();
+    }
+    document.getElementById('va-vocab-n').textContent = state.wrongWords.length;
+  }
+  function removeWrong(thai){
+    state.wrongWords = state.wrongWords.filter(w => w.thai !== thai);
+    persist();
+    document.getElementById('va-vocab-n').textContent = state.wrongWords.length;
+    if(state.view === 'vocab') renderVocab();
+  }
+
+  // ============================================================
+  // 出题逻辑(生词本词条占 40% 配额优先出现)
+  // ============================================================
+  function buildQueue(){
+    const wrongIdxs = state.wrongWords
+      .map(w => WORDS.findIndex(x => x.thai === w.thai))
+      .filter(i => i >= 0);
+    const wrongCount = Math.min(wrongIdxs.length, Math.floor(SESSION * 0.4));
+    const pickedWrong = shuffle(wrongIdxs).slice(0, wrongCount);
+    const remaining = SESSION - pickedWrong.length;
+    const others = shuffle(WORDS.map((_, i) => i).filter(i => !pickedWrong.includes(i))).slice(0, remaining);
+    return shuffle([...pickedWrong, ...others]);
+  }
+
+  // ============================================================
+  // 顶栏 + 视图切换
+  // ============================================================
+  function topBar(){
+    document.getElementById('va-fill').style.width = Math.round(state.idx / SESSION * 100) + '%';
+    document.getElementById('va-streak').textContent = state.streak;
+    document.getElementById('va-score').textContent = state.score;
+  }
+  function setView(v){
+    state.view = v;
+    document.getElementById('va-vocab-btn').classList.toggle('active', v === 'vocab');
+    document.getElementById('va-controls').style.display = v === 'practice' ? '' : 'none';
+    if(v === 'vocab') renderVocab();
+    else render();
+  }
+
+  // ============================================================
+  // 一轮开始
+  // ============================================================
+  function start(){
+    state.idx = 0; state.score = 0; state.streak = 0; state.best = 0; state.answered = false;
+    state.queue = buildQueue();
+    state.view = 'practice';
+    document.getElementById('va-vocab-btn').classList.remove('active');
+    document.getElementById('va-controls').style.display = '';
+    topBar();
+    render();
+  }
+
+  function render(){
+    if(state.idx >= SESSION) return renderResult();
+    if(state.mode === 'mc') renderMC(); else renderSpell();
+  }
+
+  // ============================================================
+  // 选词配对
+  // ============================================================
+  function renderMC(){
+    const w = WORDS[state.queue[state.idx]];
+    const others = WORDS.filter((_, i) => i !== state.queue[state.idx]);
+    const opts = shuffle([w, ...shuffle(others).slice(0, 3)]);
+    document.getElementById('va-area').innerHTML = `
+      <div class="va-card anim-in">
+        <div class="va-thai-row">
+          <div class="va-thai-big">${escapeHtml(w.thai)}</div>
+          <button class="va-speak" id="va-speak-q" aria-label="发音"><i class="ti ti-volume" aria-hidden="true"></i></button>
+        </div>
+        <div class="va-roman">${escapeHtml(w.roman)}</div>
+        <div class="va-prompt">这个词是什么意思</div>
+      </div>
+      <div class="va-options anim-in" id="va-opts">
+        ${opts.map(o => `<button class="va-opt" data-zh="${escapeHtml(o.zh)}">${escapeHtml(o.zh)}</button>`).join('')}
+      </div>
+      <div class="va-fb" id="va-fb"></div>
+    `;
+    state.answered = false;
+    document.getElementById('va-speak-q').addEventListener('click', () => speak(w.thai));
+    speak(w.thai);
+    document.querySelectorAll('#va-opts .va-opt').forEach(b => {
+      b.addEventListener('click', () => handleMC(b, w));
+    });
+  }
+  function handleMC(btn, w){
+    if(state.answered) return;
+    state.answered = true;
+    const ok = btn.dataset.zh === w.zh;
+    document.querySelectorAll('#va-opts .va-opt').forEach(b => {
+      b.disabled = true;
+      if(b.dataset.zh === w.zh) b.classList.add('correct');
+      else if(b === btn) b.classList.add('wrong');
+    });
+    const fb = document.getElementById('va-fb');
+    if(ok){
+      state.score += 10;
+      state.streak += 1;
+      state.best = Math.max(state.best, state.streak);
+      fb.className = 'va-fb ok';
+      fb.textContent = '正确 +10';
+      setTimeout(advance, 850);
+    } else {
+      state.streak = 0;
+      addWrong(w);
+      fb.className = 'va-fb no';
+      fb.textContent = `正确答案: ${w.zh} — 已加入生词本,点选项继续`;
+      document.querySelectorAll('#va-opts .va-opt').forEach(b => {
+        b.disabled = false; b.style.cursor = 'pointer';
+        b.addEventListener('click', advance, { once: true });
+      });
+    }
+    topBar();
+  }
+
+  // ============================================================
+  // 拼写挑战
+  // ============================================================
+  function renderSpell(){
+    const w = WORDS[state.queue[state.idx]];
+    const chars = Array.from(w.thai);
+    const pool = new Set();
+    WORDS.forEach(x => Array.from(x.thai).forEach(c => pool.add(c)));
+    const distractors = shuffle(Array.from(pool).filter(c => !chars.includes(c))).slice(0, 2);
+    const tiles = shuffle([...chars, ...distractors]);
+    document.getElementById('va-area').innerHTML = `
+      <div class="va-card anim-in">
+        <div style="display:flex; align-items:center; justify-content:center; gap:16px;">
+          <div class="va-zh-big">${escapeHtml(w.zh)}</div>
+          <button class="va-speak" id="va-speak-q" aria-label="发音提示"><i class="ti ti-volume" aria-hidden="true"></i></button>
+        </div>
+        <div class="va-roman">${escapeHtml(w.roman)}</div>
+        <div class="va-prompt">用泰文拼出这个词</div>
+      </div>
+      <div class="va-slots anim-in" id="va-slots"></div>
+      <div class="va-bank anim-in" id="va-bank">
+        ${tiles.map((c, i) => `<button class="va-tile" data-i="${i}" data-c="${escapeHtml(c)}">${escapeHtml(c)}</button>`).join('')}
+      </div>
+      <div class="va-fb" id="va-fb"></div>
+      <div style="text-align:center;"><button class="va-btn-action" id="va-check">检查</button></div>
+    `;
+    state.answered = false;
+    document.getElementById('va-speak-q').addEventListener('click', () => speak(w.thai));
+    const picked = [];
+    function drawSlots(){
+      const slots = document.getElementById('va-slots');
+      slots.innerHTML = picked.map((p, j) => `<button class="va-tile slot" data-j="${j}">${escapeHtml(p.c)}</button>`).join('');
+      slots.querySelectorAll('.va-tile').forEach(el => {
+        el.addEventListener('click', () => {
+          if(state.answered) return;
+          const j = +el.dataset.j;
+          const removed = picked.splice(j, 1)[0];
+          removed.el.classList.remove('used');
+          drawSlots();
+        });
+      });
+    }
+    document.querySelectorAll('#va-bank .va-tile').forEach(t => {
+      t.addEventListener('click', () => {
+        if(state.answered || t.classList.contains('used')) return;
+        t.classList.add('used');
+        picked.push({c: t.dataset.c, el: t});
+        drawSlots();
+      });
+    });
+    document.getElementById('va-check').addEventListener('click', () => {
+      if(state.answered) return;
+      state.answered = true;
+      const guess = picked.map(p => p.c).join('');
+      const ok = guess === w.thai;
+      const fb = document.getElementById('va-fb');
+      const btn = document.getElementById('va-check');
+      if(ok){
+        state.score += 15;
+        state.streak += 1;
+        state.best = Math.max(state.best, state.streak);
+        fb.className = 'va-fb ok';
+        fb.textContent = '正确 +15';
+        btn.textContent = '继续';
+        speak(w.thai);
+        setTimeout(advance, 950);
+      } else {
+        state.streak = 0;
+        addWrong(w);
+        fb.className = 'va-fb no';
+        fb.innerHTML = `正确答案: <span style="font-family:var(--font-thai);font-size:20px;">${escapeHtml(w.thai)}</span> — 已加入生词本`;
+        btn.textContent = '继续';
+        speak(w.thai);
+        btn.addEventListener('click', advance, { once: true });
+      }
+      topBar();
+    });
+  }
+
+  function advance(){
+    state.idx += 1;
+    topBar();
+    render();
+  }
+
+  // ============================================================
+  // 结算
+  // ============================================================
+  function renderResult(){
+    state.lifetimeScore += state.score;
+    state.sessionsCompleted += 1;
+    persist();
+    updateFoot();
+    document.getElementById('va-fill').style.width = '100%';
+    const pct = state.score / (SESSION * 15);
+    const icon = pct > 0.7 ? 'ti-trophy' : pct > 0.4 ? 'ti-thumb-up' : 'ti-mood-smile';
+    const msg = pct > 0.7 ? '太棒了!' : pct > 0.4 ? '不错!' : '继续加油';
+    document.getElementById('va-area').innerHTML = `
+      <div class="va-card va-result anim-in">
+        <i class="ti ${icon} va-result-icon" aria-hidden="true"></i>
+        <div class="va-result-title">${msg}</div>
+        <div class="va-result-sub">本轮得分 ${state.score} · 最高连胜 ${state.best} · 生词本 ${state.wrongWords.length}</div>
+        <button class="va-btn-action" id="va-again">再来一轮</button>
+      </div>
+    `;
+    document.getElementById('va-again').addEventListener('click', start);
+  }
+
+  // ============================================================
+  // 生词本视图
+  // ============================================================
+  function renderVocab(){
+    const area = document.getElementById('va-area');
+    if(state.wrongWords.length === 0){
+      area.innerHTML = `
+        <button class="va-back" id="va-back"><i class="ti ti-arrow-left" aria-hidden="true"></i>返回练习</button>
+        <div class="va-vocab-empty anim-in">
+          <i class="ti ti-notebook" aria-hidden="true"></i>
+          <div class="va-vocab-empty-title">生词本是空的</div>
+          <div class="va-vocab-empty-sub">练习时答错的词会自动收进来</div>
+        </div>`;
+    } else {
+      area.innerHTML = `
+        <button class="va-back" id="va-back"><i class="ti ti-arrow-left" aria-hidden="true"></i>返回练习</button>
+        <div style="font-size:13px; color: var(--text-faint); margin-bottom: 12px;">共 ${state.wrongWords.length} 个生词,下一轮会优先出现</div>
+        <div class="va-vocab-list anim-in">
+          ${state.wrongWords.map(w => `
+            <div class="va-vocab-item">
+              <div style="flex:1; min-width:0;">
+                <div class="va-vocab-thai">${escapeHtml(w.thai)}</div>
+                <div class="va-vocab-meta">${escapeHtml(w.roman)} · <span class="zh">${escapeHtml(w.zh)}</span></div>
+              </div>
+              <button class="va-icon-btn" data-speak="${escapeHtml(w.thai)}" aria-label="发音"><i class="ti ti-volume" aria-hidden="true"></i></button>
+              <button class="va-icon-btn" data-remove="${escapeHtml(w.thai)}" aria-label="已掌握" title="标记为已掌握"><i class="ti ti-check" aria-hidden="true"></i></button>
+            </div>`).join('')}
+        </div>`;
+      area.querySelectorAll('[data-speak]').forEach(b => b.addEventListener('click', () => speak(b.dataset.speak)));
+      area.querySelectorAll('[data-remove]').forEach(b => b.addEventListener('click', () => removeWrong(b.dataset.remove)));
+    }
+    document.getElementById('va-back').addEventListener('click', () => setView('practice'));
+  }
+
+  // ============================================================
+  // 按钮绑定
+  // ============================================================
+  document.getElementById('va-vocab-btn').addEventListener('click', () => {
+    setView(state.view === 'vocab' ? 'practice' : 'vocab');
+  });
+  document.getElementById('va-mode-mc').addEventListener('click', () => {
+    state.mode = 'mc';
+    document.getElementById('va-mode-mc').classList.add('active');
+    document.getElementById('va-mode-spell').classList.remove('active');
+    start();
+  });
+  document.getElementById('va-mode-spell').addEventListener('click', () => {
+    state.mode = 'spell';
+    document.getElementById('va-mode-spell').classList.add('active');
+    document.getElementById('va-mode-mc').classList.remove('active');
+    start();
+  });
+  document.getElementById('va-restart').addEventListener('click', start);
+
+  // ============================================================
+  // 启动
+  // ============================================================
+  loadState();
+  updateFoot();
+  initTTS();
+  start();
+})();
+</script>
+</body>
+</html>
